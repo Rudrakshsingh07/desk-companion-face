@@ -1,0 +1,17 @@
+{
+  "name": "Desk Companion",
+  "short_name": "DeskComp",
+  "description": "Smart desk dashboard with face recognition",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

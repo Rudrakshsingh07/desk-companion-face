@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 15% 4%;
+    --foreground: 220 20% 88%;
+
+    --card: 240 12% 8%;
+    --card-foreground: 220 20% 88%;
+
+    --popover: 240 12% 8%;
+    --popover-foreground: 220 20% 88%;
+
+    --primary: 160 60% 45%;
+    --primary-foreground: 240 15% 4%;
+
+    --secondary: 240 10% 14%;
+    --secondary-foreground: 220 20% 75%;
+
+    --muted: 240 10% 12%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 200 80% 55%;
+    --accent-foreground: 240 15% 4%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 10% 16%;
+    --input: 240 10% 16%;
+    --ring: 160 60% 45%;
+
+    --radius: 0.75rem;
+
+    --warning: 35 90% 55%;
+    --warning-foreground: 240 15% 4%;
+
+    --glow-primary: 0 0 20px hsl(160 60% 45% / 0.15);
+    --glow-accent: 0 0 20px hsl(200 80% 55% / 0.15);
+
+    --sidebar-background: 240 12% 6%;
+    --sidebar-foreground: 220 20% 88%;
+    --sidebar-primary: 160 60% 45%;
+    --sidebar-primary-foreground: 240 15% 4%;
+    --sidebar-accent: 240 10% 14%;
+    --sidebar-accent-foreground: 220 20% 88%;
+    --sidebar-border: 240 10% 16%;
+    --sidebar-ring: 160 60% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .text-glow-primary {
+    text-shadow: 0 0 20px hsl(160 60% 45% / 0.4), 0 0 40px hsl(160 60% 45% / 0.2);
+  }
+
+  .text-glow-accent {
+    text-shadow: 0 0 20px hsl(200 80% 55% / 0.4), 0 0 40px hsl(200 80% 55% / 0.2);
+  }
+
+  .border-glow {
+    box-shadow: var(--glow-primary), inset 0 1px 0 hsl(220 20% 88% / 0.05);
+  }
+
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-md border border-border rounded-lg;
+  }
+}
