@@ -90,4 +90,111 @@
   .glass-panel {
     @apply bg-card/80 backdrop-blur-md border border-border rounded-lg;
   }
+
+  /* === Skeuomorphic Macropad === */
+  .macropad-body {
+    background: linear-gradient(145deg, hsl(220 10% 22%), hsl(220 8% 15%));
+    border: 1px solid hsl(220 8% 28%);
+    border-radius: 1rem;
+    box-shadow:
+      0 1px 0 hsl(220 10% 30%) inset,
+      0 -1px 0 hsl(220 10% 10%) inset,
+      0 8px 24px -4px rgba(0, 0, 0, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .macropad-key {
+    border-radius: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: all 0.1s ease;
+  }
+
+  .macropad-key-silver {
+    background: linear-gradient(180deg, hsl(220 8% 35%), hsl(220 8% 22%));
+    border-color: hsl(220 8% 38%);
+    box-shadow:
+      0 1px 0 hsl(220 8% 42%) inset,
+      0 -1px 2px hsl(220 10% 12%) inset,
+      0 4px 8px -2px rgba(0, 0, 0, 0.4),
+      0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .macropad-key-silver:hover {
+    background: linear-gradient(180deg, hsl(220 8% 40%), hsl(220 8% 26%));
+    border-color: hsl(220 8% 44%);
+  }
+
+  .macropad-key-silver:active,
+  .macropad-key-pressed.macropad-key-silver {
+    background: linear-gradient(180deg, hsl(220 8% 18%), hsl(220 8% 22%));
+    box-shadow:
+      0 -1px 0 hsl(220 8% 30%) inset,
+      0 2px 4px hsl(220 10% 10%) inset;
+    transform: translateY(1px);
+  }
+
+  .macropad-key-shutdown {
+    background: linear-gradient(180deg, hsl(25 90% 55%), hsl(15 85% 40%));
+    border-color: hsl(25 80% 50%);
+    box-shadow:
+      0 1px 0 hsl(25 90% 65%) inset,
+      0 -1px 2px hsl(15 85% 30%) inset,
+      0 4px 8px -2px rgba(0, 0, 0, 0.4),
+      0 0 12px hsl(25 90% 50% / 0.15);
+  }
+
+  .macropad-key-shutdown:hover {
+    background: linear-gradient(180deg, hsl(25 90% 60%), hsl(15 85% 45%));
+    box-shadow:
+      0 1px 0 hsl(25 90% 70%) inset,
+      0 -1px 2px hsl(15 85% 30%) inset,
+      0 4px 8px -2px rgba(0, 0, 0, 0.4),
+      0 0 16px hsl(25 90% 50% / 0.25);
+  }
+
+  .macropad-key-shutdown:active,
+  .macropad-key-pressed.macropad-key-shutdown {
+    background: linear-gradient(180deg, hsl(15 85% 35%), hsl(15 85% 40%));
+    box-shadow:
+      0 -1px 0 hsl(25 80% 45%) inset,
+      0 2px 4px hsl(15 85% 25%) inset;
+    transform: translateY(1px);
+  }
+
+  .macropad-key-small {
+    @apply flex items-center gap-1 px-2.5 py-1 font-mono text-xs rounded-lg cursor-pointer;
+    color: hsl(220 10% 65%);
+    background: linear-gradient(180deg, hsl(220 8% 30%), hsl(220 8% 20%));
+    border: 1px solid hsl(220 8% 34%);
+    box-shadow:
+      0 1px 0 hsl(220 8% 36%) inset,
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .macropad-key-small:hover {
+    background: linear-gradient(180deg, hsl(220 8% 35%), hsl(220 8% 24%));
+    color: hsl(220 10% 80%);
+  }
+
+  .macropad-key-small:active {
+    background: linear-gradient(180deg, hsl(220 8% 17%), hsl(220 8% 20%));
+    box-shadow: 0 1px 3px hsl(220 10% 8%) inset;
+    transform: translateY(1px);
+  }
+
+  /* LCD Display — dark recessed screen */
+  .lcd-display {
+    background: linear-gradient(180deg, hsl(200 20% 6%), hsl(200 15% 9%));
+    border: 1px solid hsl(200 10% 14%);
+    border-radius: 0.5rem;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.5) inset,
+      0 -1px 0 hsl(220 8% 25%);
+  }
+
+  .lcd-text {
+    text-shadow: 0 0 8px currentColor;
+  }
 }
