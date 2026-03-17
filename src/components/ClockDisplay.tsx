@@ -15,11 +15,11 @@ export function ClockDisplay({ size = "large" }: ClockDisplayProps) {
 
   if (size === "small") {
     return (
-      <div className="glass-panel h-full p-4 flex flex-col items-center justify-center">
-        <span className="text-5xl font-mono font-extralight text-foreground tracking-wider text-glow-primary">
+      <div className="lcd-display h-full p-4 flex flex-col items-center justify-center">
+        <span className="text-4xl font-mono font-light text-primary tracking-wider lcd-text">
           {format(now, "HH:mm")}
         </span>
-        <span className="text-xs font-mono text-muted-foreground mt-2 tracking-wide">
+        <span className="text-[10px] font-mono text-primary/60 mt-1 tracking-wide">
           {format(now, "EEEE, MMM d")}
         </span>
       </div>
