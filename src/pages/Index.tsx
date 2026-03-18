@@ -7,7 +7,8 @@ import { AdminScreen } from "@/components/AdminScreen";
 
 const Index = () => {
   const {
-    state, userId, analytics, videoRef, canvasRef, sessionStartRef,
+    state, userId, sessionToken, sessionRole,
+    analytics, videoRef, canvasRef, sessionStartRef,
     handleManualLogin, handleLogout, handleLock, showLogin, cancelLogin,
     retryRecognition, cancelLocked, showAdmin, backToDashboard,
   } = useAppState();
@@ -25,6 +26,8 @@ const Index = () => {
       {state === "authenticated" && (
         <DashboardScreen
           userId={userId}
+          token={sessionToken}
+          role={sessionRole}
           analytics={analytics}
           sessionStartRef={sessionStartRef}
           onLogout={handleLogout}

@@ -15,9 +15,11 @@ interface DashboardScreenProps {
   onLock: () => void;
   onAdmin: () => void;
   isAdmin: boolean;
+  token: string | null;
+  role: string | null;
 }
 
-export function DashboardScreen({ userId, analytics, sessionStartRef, onLogout, onLock, onAdmin, isAdmin }: DashboardScreenProps) {
+export function DashboardScreen({ userId, analytics, sessionStartRef, onLogout, onLock, onAdmin, isAdmin, token, role }: DashboardScreenProps) {
   return (
     <div className="absolute inset-0 metal-chassis p-4 animate-fade-in">
       <div className="h-full flex flex-col gap-3">
@@ -27,16 +29,16 @@ export function DashboardScreen({ userId, analytics, sessionStartRef, onLogout, 
           <div className="flex items-center gap-3">
             <div className="macropad-screw" />
             <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_hsl(160_70%_50%/0.7)]" />
-            <span className="text-[10px] font-mono text-foreground/50 tracking-[0.2em] uppercase">
+            <span className="text-[10px] font-mono text-foreground tracking-[0.2em] uppercase">
               Authenticated
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-foreground/35 flex items-center gap-1.5">
+            <span className="text-[10px] font-mono text-foreground flex items-center gap-1.5">
               <User className="w-3 h-3" /> {userId}
             </span>
             {isAdmin && (
-              <Button variant="ghost" size="sm" className="h-7 px-2 font-mono text-[10px] text-foreground/35 gap-1 hover:text-foreground/60" onClick={onAdmin}>
+              <Button variant="ghost" size="sm" className="h-7 px-2 font-mono text-[10px] text-foreground gap-1 hover:text-foreground/80" onClick={onAdmin}>
                 <Settings className="w-3 h-3" /> Admin
               </Button>
             )}
@@ -52,7 +54,10 @@ export function DashboardScreen({ userId, analytics, sessionStartRef, onLogout, 
 
           {/* Left — Macropad Buttons Panel */}
           <div className="flex-1 min-h-0">
-            <CommandsWidget />
+            <CommandsWidget 
+              token={token} 
+              role={role} 
+            />
           </div>
 
           {/* Right — LCD Info Strip */}

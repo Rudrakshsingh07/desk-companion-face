@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
     entries: ["index.html"],
   },
   server: {
-    host: "::",
+    host: true,
     port: 8080,
     proxy: {
       "/api": {

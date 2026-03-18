@@ -11,6 +11,10 @@ export function useMotionDetector() {
 
   const startCamera = useCallback(async () => {
     try {
+      if (!navigator.mediaDevices?.getUserMedia) {
+        console.warn("Camera API not available (requires HTTPS or localhost)");
+        return;
+      }
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: "user", width: 320, height: 240 },
       });

@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { KeyRound, LogIn } from "lucide-react";
 import { login } from "@/lib/api";
+import type { SessionRole } from "@/hooks/useAppState";
 
 interface LoginScreenProps {
-  onLogin: (userId: string) => void;
+  onLogin: (userId: string, token: string, role: SessionRole) => void;
   onCancel: () => void;
 }
 
@@ -18,8 +19,8 @@ export function LoginScreen({ onLogin, onCancel }: LoginScreenProps) {
     setError("");
 
     const res = await login(userId.trim(), password);
-    if (res.status === "ok" && res.username) {
-      onLogin(res.username);
+    if (res.status === "ok" && res.username && res.token && res.role) {
+      onLogin(res.username, res.token, res.role);
       return;
     }
     setError(res.error || "Invalid credentials");

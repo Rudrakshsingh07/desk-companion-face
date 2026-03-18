@@ -1,0 +1,60 @@
+/* ============================================
+   PDF EXPORT — Black & White + Layout Control
+   ============================================ */
+
+@media print {
+    /* --- Page background & base text --- */
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    /* --- Remove theme backgrounds --- */
+    .theme-dark,
+    .theme-light,
+    .markdown-preview-view,
+    .markdown-source-view,
+    .view-content {
+        background: white !important;
+        color: black !important;
+    }
+
+    /* --- Code blocks & callouts --- */
+    .callout,
+    .cm-s-obsidian,
+    pre,
+    code {
+        background: #f5f5f5 !important;
+        color: black !important;
+    }
+
+    /* --- Links --- */
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+
+    /* --- Borders --- */
+    * {
+        border-color: #ccc !important;
+    }
+
+    /* --- Prevent orphaned headings --- */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    /* --- Prevent widows & orphans in body text --- */
+    p,
+    li,
+    blockquote {
+        orphans: 3;
+        widows: 3;
+    }
+}

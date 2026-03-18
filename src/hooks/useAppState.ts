@@ -4,6 +4,7 @@ import { recognizeFace, logEvent } from "@/lib/api";
 import { getConfig } from "@/lib/config";
 
 export type AppState = "idle" | "locked" | "authenticated" | "login" | "admin";
+export type SessionRole = "admin" | "user";
 
 export interface SessionAnalytics {
   totalDeskTimeMs: number;
@@ -15,6 +16,8 @@ export function useAppState() {
   const { videoRef, canvasRef, captureFrame, cameraReady, presenceDetected } = useMotionDetector();
   const [state, setState] = useState<AppState>("idle");
   const [userId, setUserId] = useState<string>("");
+  const [sessionToken, setSessionToken] = useState<string | null>(null);
+  const [sessionRole, setSessionRole] = useState<SessionRole | null>(null);
   const [analytics, setAnalytics] = useState<SessionAnalytics>({
     totalDeskTimeMs: 0,
     sessionCount: 0,
@@ -59,6 +62,8 @@ export function useAppState() {
         if (state !== "authenticated") {
           setState("authenticated");
           setUserId(result.user_id);
+          setSessionToken(result.token ?? null);
+          setSessionRole((result.role as SessionRole) ?? "user");
           sessionStartRef.current = Date.now();
           setAnalytics((prev) => ({
             ...prev,
@@ -85,9 +90,11 @@ export function useAppState() {
     handleRecognitionOnce();
   }, [handleRecognitionOnce]);
 
-  const handleManualLogin = useCallback((loginUserId: string) => {
+  const handleManualLogin = useCallback((loginUserId: string, token: string, role: SessionRole) => {
     setState("authenticated");
     setUserId(loginUserId);
+    setSessionToken(token);
+    setSessionRole(role);
     sessionStartRef.current = Date.now();
     lastActivityRef.current = Date.now();
     hasTriedForCurrentPresenceRef.current = false;
@@ -112,6 +119,8 @@ export function useAppState() {
     sessionStartRef.current = null;
     setState("idle");
     setUserId("");
+    setSessionToken(null);
+    setSessionRole(null);
     hasTriedForCurrentPresenceRef.current = false;
   }, [userId]);
 
@@ -185,7 +194,8 @@ export function useAppState() {
   }, [state, userId, handleLogout]);
 
   return {
-    state, userId, analytics, videoRef, canvasRef, sessionStartRef,
+    state, userId, sessionToken, sessionRole,
+    analytics, videoRef, canvasRef, sessionStartRef,
     triggerRecognition, handleManualLogin, handleLogout, handleLock,
     showLogin, cancelLogin, retryRecognition, cancelLocked,
     showAdmin, backToDashboard,

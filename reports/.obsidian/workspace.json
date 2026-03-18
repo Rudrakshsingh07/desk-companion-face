@@ -1,0 +1,213 @@
+{
+  "main": {
+    "id": "39cea7b2864eef72",
+    "type": "split",
+    "children": [
+      {
+        "id": "d64fef4aa719196f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2d2377687ef6221c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Biometric Interface Control Hub ( IoT ).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Biometric Interface Control Hub ( IoT )"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "221656436f2e45c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "ff785d9f09c90361",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ca2a942d63bb983f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f340a6545ae78f09",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "b3db2aa047587067",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 326
+  },
+  "right": {
+    "id": "daccfaa4e07c6eff",
+    "type": "split",
+    "children": [
+      {
+        "id": "c5e6d6b8c2b5309f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ec9c50524715b3b0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "0e1637bdb19cb2db",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CMT Notes/Chapter 2/Chipsets-North-South-Bridge.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Chipsets-North-South-Bridge"
+            }
+          },
+          {
+            "id": "30e300975d56df2f",
+            "type": "leaf",
+            "state": {
+              "type": "side-panel-control-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "side-panel-control-view"
+            }
+          },
+          {
+            "id": "98ae949f9c58042b",
+            "type": "leaf",
+            "state": {
+              "type": "footnotes",
+              "state": {
+                "file": "CMT Notes/Chapter 2/Chipsets-North-South-Bridge.md"
+              },
+              "icon": "lucide-file-signature",
+              "title": "Footnotes"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "markdown-importer:Open format converter": false,
+      "zk-prefixer:Create new unique note": false,
+      "random-note:Open random note": false,
+      "workspaces:Manage workspace layouts": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-markdown-formatting-assistant-plugin:Open Markdown Formatting Assistant": false
+    }
+  },
+  "active": "2d2377687ef6221c",
+  "lastOpenFiles": [
+    "Biometric Interface Control Hub ( BIS ).md",
+    "Biometric Interface Control Hub ( IoT ).md",
+    "Biometric Interface Control Hub ( CMTS ).md",
+    "Personal Vault/analysis_better-rofi_20260318_193015.md",
+    "Personal Vault/project_status_better-rofi_20260318_192649.md",
+    "Personal Vault/project_status_better-rofi_20260318_191729.md",
+    "Personal Vault/project_status_better-rofi_20260318_191200.md",
+    "Personal Vault/project_status_better-rofi_20260318_190116.md",
+    "Personal Vault/DailyIntakeRecorder.pdf",
+    "Personal Vault/AI/Ollama LLMs Installed.md",
+    "Personal Vault/AI/How to use AI to build Apps.md",
+    "DDCET Notes/DDCET 2024–25 — Complete Exam Notes.md",
+    "DDCET Notes/Physics Formulas.md",
+    "DDCET Notes/Untitled.md",
+    "DDCET Notes/Kirchoffs Laws.md",
+    "DDCET Notes/Internet Technology MCQ Questions for Competitive Exams.md",
+    "DDCET Notes/Gausser's Laws.md",
+    "DDCET Notes/Determinants Important Formulae.md",
+    "Projects/Project001/LongPulse — Product Requirements Document.md",
+    "Projects/Project001",
+    "Projects/QNA.md",
+    "Note Taking Prompt ( Master ).md",
+    "tasks.md",
+    "Personal Vault/Linux/Hyprland Keybinds Reference.md",
+    "Projects",
+    "Personal Vault/Personal/Applications that i cant live without.md",
+    "Personal Vault/GTA Online/Vehicle Organization.md",
+    "Personal Vault/GTA Online/V1.2_nosave.ahk",
+    "Personal Vault/GTA Online/Untitled.md",
+    "Personal Vault/GTA Online/THE COMPLETE GTA ONLINE SHOW-OFF PACKAGE.md",
+    "Personal Vault/GTA Online",
+    "Micro-Projects/CC( FAI )",
+    "Micro-Projects/FIoT",
+    "Micro-Projects",
+    "CC Notes/CC_FULL-BOOK (1).pdf",
+    "CC Notes/CC_FULL-BOOK (1).pdf.crdownload",
+    "Attachments/Pasted image 20260222102707.png",
+    "Attachments/Pasted image 20260222102806.png",
+    "FOI Notes/Chapter 3/Pasted image 20260115121818.png",
+    "Personal Vault/Learning React/Pasted image 20260124230031.png",
+    "Personal Vault/Learning React/Pasted image 20260124224714.png",
+    "Personal Vault/Learning React/Pasted image 20260124224339.png",
+    "Attachments/out-of-control.jpg",
+    "Untitled.canvas"
+  ]
+}

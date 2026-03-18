@@ -3,6 +3,8 @@ import { getApiBase } from "./config";
 interface RecognizeResponse {
   authenticated: boolean;
   user_id: string;
+  role?: "admin" | "user";
+  token?: string;
 }
 
 export async function recognizeFace(
@@ -106,7 +108,7 @@ export async function deleteUser(username: string): Promise<{ status: string; er
 export async function login(
   username: string,
   password: string
-): Promise<{ status: string; error?: string; username?: string; role?: "admin" | "user" }> {
+): Promise<{ status: string; error?: string; username?: string; role?: "admin" | "user"; token?: string }> {
   try {
     const res = await fetch(`${getApiBase()}/login`, {
       method: "POST",
@@ -118,6 +120,45 @@ export async function login(
     return { status: "error", error: "Network error" };
   }
 }
+
+export const runCommand = async (action: string, token: string, meta: Record<string, unknown> = {}) => {
+  const res = await fetch(`${getApiBase()}/command`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Session-Token": token,
+    },
+    body: JSON.stringify({ action, meta }),
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(text || `Command failed (${res.status})`);
+  }
+  return res.json() as Promise<{ ok: boolean; message: string; action: string }>;
+};
+
+export const saveSetting = async (key: string, value: string, token: string) => {
+  const res = await fetch(`${getApiBase()}/settings/${encodeURIComponent(key)}?value=${encodeURIComponent(value)}`, {
+    method: "POST",
+    headers: { "X-Session-Token": token },
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(text || `Save failed (${res.status})`);
+  }
+  return res.json() as Promise<{ ok: boolean }>;
+};
+
+export const getSetting = async (key: string, token: string) => {
+  const res = await fetch(`${getApiBase()}/settings/${encodeURIComponent(key)}`, {
+    headers: { "X-Session-Token": token },
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(text || `Fetch failed (${res.status})`);
+  }
+  return res.json() as Promise<{ key: string; value: string | null }>;
+};
 
 export interface WeatherData {
   temp: number;

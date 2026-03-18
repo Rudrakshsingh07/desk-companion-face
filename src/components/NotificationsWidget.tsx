@@ -44,7 +44,7 @@ export function NotificationsWidget() {
         onClick={() => setOpen(true)}
       >
         <Bell className="w-5 h-5 text-primary relative z-10" />
-        <span className="text-[9px] font-mono text-primary/60 lcd-text relative z-10">
+        <span className="text-[9px] font-mono text-primary lcd-text relative z-10">
           {items.length > 0 ? `${items.length} notif${items.length > 1 ? "s" : ""}` : "Notifications"}
         </span>
       </button>
@@ -70,9 +70,9 @@ export function NotificationsWidget() {
 
             {items.length === 0 ? (
               <div className="lcd-display flex flex-col items-center py-8 gap-2 relative z-10">
-                <Bell className="w-8 h-8 text-primary/30 relative z-10" />
-                <span className="text-sm font-mono text-primary/60 lcd-text relative z-10">No notifications</span>
-                <span className="text-[10px] font-mono text-primary/30 relative z-10 text-center px-6">
+                <Bell className="w-8 h-8 text-primary/50 relative z-10" />
+                <span className="text-sm font-mono text-primary/90 lcd-text relative z-10">No notifications</span>
+                <span className="text-[10px] font-mono text-primary/50 relative z-10 text-center px-6">
                   Waiting for device notifications.
                 </span>
               </div>
@@ -92,7 +92,7 @@ export function NotificationsWidget() {
                       </span>
                     </div>
                     {n.body && (
-                      <span className="text-[10px] font-mono text-primary/40 leading-snug">
+                      <span className="text-[10px] font-mono text-primary/80 leading-snug">
                         {n.body}
                       </span>
                     )}

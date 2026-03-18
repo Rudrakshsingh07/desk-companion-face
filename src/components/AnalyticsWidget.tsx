@@ -78,25 +78,25 @@ export function AnalyticsWidget({ analytics, sessionStartRef }: AnalyticsWidgetP
               Analytics
             </span>
           </div>
-          <BarChart3 className="w-3 h-3 text-primary/40" />
+          <BarChart3 className="w-3 h-3 text-primary/80" />
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-3 gap-2 relative z-10">
           <div className="flex flex-col gap-0.5">
-            <span className="text-[8px] font-mono text-primary/40 flex items-center gap-0.5">
+            <span className="text-[8px] font-mono text-primary/70 flex items-center gap-0.5">
               <Clock className="w-2 h-2" /> Desk
             </span>
             <span className="text-sm font-mono font-semibold text-primary lcd-text">{formatDuration(totalMs)}</span>
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-[8px] font-mono text-primary/40 flex items-center gap-0.5">
+            <span className="text-[8px] font-mono text-primary/70 flex items-center gap-0.5">
               <Hash className="w-2 h-2" /> Sess
             </span>
             <span className="text-sm font-mono font-semibold text-primary lcd-text">{analytics.sessionCount}</span>
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-[8px] font-mono text-primary/40 flex items-center gap-0.5">
+            <span className="text-[8px] font-mono text-primary/70 flex items-center gap-0.5">
               <Eye className="w-2 h-2" /> Seen
             </span>
             <span className="text-sm font-mono font-semibold text-primary lcd-text">
@@ -121,8 +121,8 @@ export function AnalyticsWidget({ analytics, sessionStartRef }: AnalyticsWidgetP
         </div>
 
         <div className="flex items-center justify-center gap-1 relative z-10">
-          <TrendingUp className="w-2.5 h-2.5 text-primary/30" />
-          <span className="text-[8px] font-mono text-primary/30 tracking-wider">TAP FOR DETAILS</span>
+          <TrendingUp className="w-2.5 h-2.5 text-primary/60" />
+          <span className="text-[8px] font-mono text-primary/60 tracking-wider">TAP FOR DETAILS</span>
         </div>
       </button>
 
@@ -147,19 +147,19 @@ export function AnalyticsWidget({ analytics, sessionStartRef }: AnalyticsWidgetP
             {/* Stat LCDs */}
             <div className="grid grid-cols-3 gap-3 relative z-10">
               <div className="lcd-display p-3 flex flex-col gap-1">
-                <span className="text-[9px] font-mono text-primary/50 flex items-center gap-1 relative z-10">
+                <span className="text-[9px] font-mono text-primary/80 flex items-center gap-1 relative z-10">
                   <Clock className="w-2.5 h-2.5" /> Desk Time
                 </span>
                 <span className="text-lg font-mono font-semibold text-primary lcd-text relative z-10">{formatDuration(totalMs)}</span>
               </div>
               <div className="lcd-display p-3 flex flex-col gap-1">
-                <span className="text-[9px] font-mono text-primary/50 flex items-center gap-1 relative z-10">
+                <span className="text-[9px] font-mono text-primary/80 flex items-center gap-1 relative z-10">
                   <Hash className="w-2.5 h-2.5" /> Sessions
                 </span>
                 <span className="text-lg font-mono font-semibold text-primary lcd-text relative z-10">{analytics.sessionCount}</span>
               </div>
               <div className="lcd-display p-3 flex flex-col gap-1">
-                <span className="text-[9px] font-mono text-primary/50 flex items-center gap-1 relative z-10">
+                <span className="text-[9px] font-mono text-primary/80 flex items-center gap-1 relative z-10">
                   <Eye className="w-2.5 h-2.5" /> Last Seen
                 </span>
                 <span className="text-lg font-mono font-semibold text-primary lcd-text relative z-10">
