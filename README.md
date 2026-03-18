@@ -1,6 +1,29 @@
 # Desk Companion
 
-## Run the backend (FastAPI)
+Desk Companion is a local-first “kiosk” web app for a desk/laptop setup:
+
+- **Presence → authenticate**: a lightweight on-device motion detector watches the webcam; when someone appears, the UI captures a frame once and asks the backend to recognize the face.
+- **Locked vs authenticated**: unrecognized users see a locked screen with “Retry” or “Manual Login”.
+- **Dashboard**: authenticated users get a “macropad-style” control panel (commands), basic session analytics, and a notifications panel.
+- **Admin panel**: admins can create/delete users (including capturing/uploading a face image) and view analytics stats.
+
+This repo contains:
+
+- **Frontend**: Vite + React + TypeScript + Tailwind + shadcn-ui
+- **Backend**: FastAPI (Python) providing face recognition, user management, analytics logging, and “command” endpoints
+
+## Quick start (dev)
+
+### Prerequisites
+
+- **Node.js + npm** (for the frontend)
+- **Python 3.10+** (for the backend)
+- **System deps for `face_recognition`**: you may need OS packages for `dlib`/compilers depending on your distro.
+- **Optional OS tools**:
+  - **KDE Connect** (`kdeconnect-cli`) for notification feed + remote command sharing
+  - **Screenshot tool** for “Capture Inspiration”: `grim` (Wayland) / `gnome-screenshot` / `scrot` / ImageMagick `import`
+
+### 1) Run the backend (FastAPI)
 
 From the project root:
 
@@ -8,10 +31,16 @@ From the project root:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-## Run the frontend (Vite)
+On first run, the backend creates:
+
+- `known_faces/` (per-user face images)
+- `logs/unknown/` (unknown recognition attempts)
+- `analytics.db` (SQLite: users + event log)
+
+### 2) Run the frontend (Vite)
 
 In another terminal:
 
@@ -20,77 +49,71 @@ npm install
 npm run dev -- --port 8080
 ```
 
-The frontend proxies `/api/*` to `http://127.0.0.1:8000/*` (see `vite.config.ts`).
-# Welcome to your Lovable project
+The frontend proxies `/api/*` to `http://127.0.0.1:8000/*` in dev (see `vite.config.ts`), so API calls can use `/api/...` without CORS headaches.
 
-## Project info
+### Run both at once
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+npm run dev:full
 ```
 
-**Edit a file directly in GitHub**
+## Configuration
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Frontend runtime config (no rebuild needed)
 
-**Use GitHub Codespaces**
+Edit `public/config.js`:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **`LAPTOP_IP` / `LAPTOP_PORT`**: used for production builds to reach the API server
+- **`MOTION_SENSITIVITY`**: controls how sensitive “presence detection” is
+- **`SESSION_TIMEOUT_SECONDS`**: auto-logout after inactivity
 
-## What technologies are used for this project?
+In dev, the API base is `/api` (Vite proxy). In production, the API base becomes `http://${LAPTOP_IP}:${LAPTOP_PORT}` (see `src/lib/config.ts`).
 
-This project is built with:
+### Backend device integration
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Edit `main.py`:
 
-## How can I deploy this project?
+- **`DEVICE_NAME`**: KDE Connect device name (used for optional sharing/commands)
+- **`COMMANDS`**: maps command actions to OS commands (be careful—these run on the server machine)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Using the app (high level)
 
-## Can I connect a custom domain to my Lovable project?
+- **Idle**: shows a large clock and “Watching for presence”
+- **Presence**: motion detected → captures a frame → calls `POST /recognize`
+- **Locked**: if not recognized, shows “UNRECOGNIZED” with Retry / Manual Login
+- **Login**: manual username/password via `POST /login`
+- **Dashboard**:
+  - commands via `POST /command`
+  - analytics widget (session counts, desk time)
+  - notifications widget via `GET /notifications`
+- **Admin**:
+  - list users `GET /users`
+  - register user (username/password/role + face image) `POST /register-user`
+  - delete user `DELETE /users/{username}`
 
-Yes, you can!
+## Security notes (important)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **Default admin**: the backend auto-creates an `admin` user with password `admin` on first run. Change/remove this before any real deployment.
+- **Auth model**: this is a **local demo/prototype** auth flow (no sessions/JWTs, no HTTPS termination). Treat it as insecure on untrusted networks.
+- **Biometric data**: face images are stored on disk under `known_faces/<username>/...`. Handle and distribute this repository accordingly.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Testing & linting
+
+```bash
+npm run lint
+npm test
+```
+
+## Build / preview
+
+```bash
+npm run build
+npm run preview
+```
+
+Note: production builds use `public/config.js` for API network settings. Ensure it’s correct wherever you host the frontend.
+
+## Project docs
+
+- `PRD.md`: what the app is / isn’t, requirements, non-goals
+- `ARCHITECTURE.md`: folder/file organization, key flows, and how modules interact
